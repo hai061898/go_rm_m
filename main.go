@@ -1,10 +1,13 @@
 package main
 
-import {
+import (
+
 	"os"
-	"Restaurant Management/database"
+	// "Restaurant Management/database"
 	"github.com/gin-gonic/gin"
-}
+
+	routes "Restaurant Management/routes"
+)
 
 func main()  {
 	port := os.Getenv("PORT")
@@ -12,5 +15,9 @@ func main()  {
 	if port == "" {
 		port = "8000"
 	}
-	
+	router := gin.New()
+	router.Use()
+	routes.FoodRoutes(router)
+	router.Run(":" + port)
+
 }
