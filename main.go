@@ -17,11 +17,13 @@ func main()  {
 	}
 	router := gin.New()
 	router.Use()
-	
+
 	routes.FoodRoutes(router)
 	routes.MenuRoutes(router)
 	routes.OrderRoutes(router)
 	routes.InvoiceRoutes(router)
+	routes.TableRoutes(router)
+	routes.OrderItemRoutes(router)
 
 	router.Run(":" + port)
 
