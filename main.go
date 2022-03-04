@@ -3,10 +3,14 @@ package main
 import (
 
 	"os"
-	// "Restaurant Management/database"
-	"github.com/gin-gonic/gin"
 
+    "Restaurant Management/database"
+	
 	routes "Restaurant Management/routes"
+	middleware "Restaurant Management/middleware"
+
+	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 func main()  {
@@ -16,7 +20,9 @@ func main()  {
 		port = "8000"
 	}
 	router := gin.New()
-	router.Use()
+	router.Use(gin.Logger())
+	routes.UserRoutes(router)
+	router.Use(middleware.Authentication())
 
 	routes.FoodRoutes(router)
 	routes.MenuRoutes(router)
